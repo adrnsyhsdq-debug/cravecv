@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CraftedCV — CV Profesional yang Membuka Pintu Karir</title>
+  <meta name="description" content="Jasa pembuatan CV profesional yang dirancang khusus untuk menonjolkan potensi terbaikmu. Hubungi kami via WhatsApp sekarang." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    /* ── RESET & ROOT ── */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg:        #080808;
+      --surface:   #111111;
+      --surface2:  #181818;
+      --border:    #252525;
+      --gold:      #C9A84C;
+      --gold-lt:   #E8C97E;
+      --gold-dk:   #8B6914;
+      --text:      #F0EBE0;
+      --muted:     #7A7570;
+      --muted-lt:  #A09890;
+      --white:     #FDFAF4;
+      --ff-display: 'Playfair Display', Georgia, serif;
+      --ff-body:    'DM Sans', sans-serif;
+      --ff-mono:    'DM Mono', monospace;
+      --radius:     4px;
+      --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--ff-body);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+      cursor: default;
+    }
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--gold-dk); border-radius: 2px; }
+
+    /* ── NOISE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      opacity: 0.35;
+    }
+
+    /* ── UTILITY ── */
+    .container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+    .gold { color: var(--gold); }
+    .serif { font-family: var(--ff-display); }
+    section { position: relative; z-index: 1; }
+
+    /* ── GOLD LINE DECORATOR ── */
+    .gold-line {
+      display: inline-flex; align-items: center; gap: 12px;
+      font-family: var(--ff-mono); font-size: 11px; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 20px;
+    }
+    .gold-line::before, .gold-line::after {
+      content: ''; height: 1px; width: 32px; background: var(--gold); flex-shrink: 0;
+    }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 14px 32px; border-radius: var(--radius);
+      font-family: var(--ff-body); font-size: 14px; font-weight: 500;
+      letter-spacing: 0.04em; text-decoration: none; border: none;
+      cursor: pointer; transition: var(--transition); white-space: nowrap;
+    }
+    .btn-gold {
+      background: var(--gold); color: #0a0a0a; font-weight: 600;
+    }
+    .btn-gold:hover {
+      background: var(--gold-lt); transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(201,168,76,0.35);
+    }
+    .btn-outline {
+      background: transparent; color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 20px 0;
+      transition: background 0.4s, backdrop-filter 0.4s, padding 0.4s;
+    }
+    nav.scrolled {
+      background: rgba(8,8,8,0.92);
+      backdrop-filter: blur(20px) saturate(180%);
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: var(--ff-display); font-size: 22px; font-weight: 700;
+      color: var(--white); text-decoration: none; letter-spacing: -0.02em;
+    }
+    .nav-logo span { color: var(--gold); }
+    .nav-links {
+      display: flex; align-items: center; gap: 36px; list-style: none;
+    }
+    .nav-links a {
+      font-size: 13px; font-weight: 400; color: var(--muted-lt);
+      text-decoration: none; letter-spacing: 0.02em;
+      transition: color 0.25s;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta { font-size: 13px !important; }
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px;
+    }
+    .hamburger span {
+      display: block; width: 24px; height: 1.5px; background: var(--text);
+      transition: var(--transition);
+    }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh; display: flex; align-items: center;
+      padding: 140px 0 100px;
+      background:
+        radial-gradient(ellipse 80% 60% at 60% 40%, rgba(201,168,76,0.07) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 50% at 10% 90%, rgba(201,168,76,0.04) 0%, transparent 50%),
+        var(--bg);
+    }
+    .hero-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+    }
+    .hero-eyebrow {
+      font-family: var(--ff-mono); font-size: 11px; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--gold);
+      display: flex; align-items: center; gap: 10px; margin-bottom: 28px;
+    }
+    .hero-eyebrow::after { content: ''; height: 1px; width: 48px; background: var(--gold); }
+    h1.hero-title {
+      font-family: var(--ff-display); font-size: clamp(44px, 5.5vw, 76px);
+      font-weight: 900; line-height: 1.05; letter-spacing: -0.03em;
+      color: var(--white); margin-bottom: 28px;
+    }
+    h1.hero-title em {
+      font-style: italic; color: var(--gold);
+      background: linear-gradient(135deg, var(--gold-lt), var(--gold));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-desc {
+      font-size: 16px; color: var(--muted-lt); line-height: 1.8;
+      max-width: 480px; margin-bottom: 44px; font-weight: 300;
+    }
+    .hero-actions { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+    .hero-trust {
+      margin-top: 56px; display: flex; align-items: center; gap: 24px;
+      padding-top: 40px; border-top: 1px solid var(--border);
+    }
+    .hero-trust-stat { text-align: center; }
+    .hero-trust-num {
+      font-family: var(--ff-display); font-size: 28px; font-weight: 700; color: var(--gold);
+    }
+    .hero-trust-label { font-size: 11px; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
+    .trust-sep { width: 1px; height: 40px; background: var(--border); }
+
+    /* ── HERO VISUAL ── */
+    .hero-visual {
+      position: relative; display: flex; justify-content: center;
+    }
+    .cv-mockup {
+      width: 100%; max-width: 400px; position: relative;
+    }
+    .cv-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px; padding: 36px 32px;
+      box-shadow: 0 40px 100px rgba(0,0,0,0.6), 0 0 0 1px rgba(201,168,76,0.1);
+      position: relative; overflow: hidden;
+    }
+    .cv-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--gold-dk), var(--gold), var(--gold-lt), var(--gold));
+    }
+    .cv-avatar {
+      width: 56px; height: 56px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold-dk), var(--gold));
+      margin-bottom: 20px; display: flex; align-items: center; justify-content: center;
+      font-family: var(--ff-display); font-size: 20px; color: #0a0a0a; font-weight: 700;
+    }
+    .cv-name-line {
+      height: 18px; background: var(--surface2); border-radius: 3px; margin-bottom: 8px;
+      width: 70%;
+      background: linear-gradient(90deg, var(--surface2) 0%, rgba(201,168,76,0.15) 50%, var(--surface2) 100%);
+      background-size: 200% 100%;
+      animation: shimmer 2.5s infinite;
+    }
+    .cv-subtitle-line {
+      height: 11px; background: var(--surface2); border-radius: 3px;
+      width: 45%; margin-bottom: 28px;
+    }
+    .cv-divider { height: 1px; background: var(--border); margin: 20px 0; }
+    .cv-section-label {
+      font-family: var(--ff-mono); font-size: 9px; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 12px;
+    }
+    .cv-line { height: 9px; background: var(--surface2); border-radius: 3px; margin-bottom: 7px; }
+    .cv-line.w80 { width: 80%; }
+    .cv-line.w60 { width: 60%; }
+    .cv-line.w90 { width: 90%; }
+    .cv-line.w45 { width: 45%; }
+    .cv-badge {
+      display: inline-block; padding: 4px 10px; border-radius: 20px; font-size: 9px;
+      font-family: var(--ff-mono); letter-spacing: 0.1em; margin-right: 6px; margin-top: 12px;
+      background: rgba(201,168,76,0.15); color: var(--gold); border: 1px solid rgba(201,168,76,0.3);
+    }
+    .floating-tag {
+      position: absolute; background: var(--surface2);
+      border: 1px solid var(--border); border-radius: 6px;
+      padding: 10px 14px; display: flex; align-items: center; gap: 8px;
+      font-size: 12px; font-weight: 500; color: var(--text);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+      animation: float 4s ease-in-out infinite;
+    }
+    .floating-tag.tag1 { top: -16px; right: -16px; animation-delay: 0s; }
+    .floating-tag.tag2 { bottom: 40px; left: -24px; animation-delay: 2s; }
+    .floating-tag .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .floating-tag .dot.green { background: #4CAF50; box-shadow: 0 0 8px #4CAF50; }
+    .floating-tag .dot.gold { background: var(--gold); box-shadow: 0 0 8px var(--gold); }
+
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    /* ── SECTION STYLES ── */
+    .section-header { text-align: center; margin-bottom: 72px; }
+    h2.section-title {
+      font-family: var(--ff-display); font-size: clamp(32px, 4vw, 52px);
+      font-weight: 700; line-height: 1.1; letter-spacing: -0.025em;
+      color: var(--white); margin-bottom: 16px;
+    }
+    h2.section-title em { font-style: italic; color: var(--gold); }
+    .section-sub {
+      font-size: 15px; color: var(--muted-lt); max-width: 520px;
+      margin: 0 auto; line-height: 1.75; font-weight: 300;
+    }
+
+    /* ── MARQUEE ── */
+    .marquee-wrap {
+      padding: 28px 0; border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border); overflow: hidden;
+      background: linear-gradient(180deg, transparent, rgba(201,168,76,0.02), transparent);
+    }
+    .marquee-track {
+      display: flex; gap: 48px; width: max-content;
+      animation: marquee 30s linear infinite;
+    }
+    .marquee-item {
+      display: flex; align-items: center; gap: 12px;
+      font-family: var(--ff-mono); font-size: 11px; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--muted); white-space: nowrap;
+    }
+    .marquee-item svg { color: var(--gold); opacity: 0.6; }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* ── WHY US ── */
+    #why { padding: 100px 0; }
+    .why-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+      border: 1px solid var(--border); border-radius: 8px; overflow: hidden;
+    }
+    .why-card {
+      padding: 44px 36px; background: var(--surface);
+      position: relative; overflow: hidden;
+      transition: background var(--transition);
+    }
+    .why-card:hover { background: var(--surface2); }
+    .why-card::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+      height: 2px; background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      opacity: 0; transition: opacity var(--transition);
+    }
+    .why-card:hover::after { opacity: 1; }
+    .why-icon {
+      width: 48px; height: 48px; border-radius: 8px;
+      background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.2);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 24px; font-size: 22px;
+    }
+    .why-title {
+      font-family: var(--ff-display); font-size: 20px; font-weight: 600;
+      color: var(--white); margin-bottom: 12px; line-height: 1.3;
+    }
+    .why-desc { font-size: 14px; color: var(--muted-lt); line-height: 1.75; }
+    .why-num {
+      position: absolute; top: 20px; right: 24px;
+      font-family: var(--ff-display); font-size: 64px; font-weight: 900;
+      color: rgba(201,168,76,0.06); line-height: 1; pointer-events: none;
+    }
+
+    /* ── SERVICES ── */
+    #services { padding: 100px 0; background: var(--surface); }
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .service-card {
+      background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
+      padding: 40px 32px; position: relative; overflow: hidden;
+      transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+    }
+    .service-card:hover {
+      transform: translateY(-6px); border-color: rgba(201,168,76,0.4);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.4), 0 0 0 1px rgba(201,168,76,0.1);
+    }
+    .service-card.featured {
+      border-color: rgba(201,168,76,0.4);
+      background: linear-gradient(160deg, rgba(201,168,76,0.06) 0%, var(--bg) 60%);
+    }
+    .service-card.featured::before {
+      content: 'Paling Populer'; position: absolute; top: 20px; right: 20px;
+      background: var(--gold); color: #0a0a0a; font-size: 10px; font-weight: 700;
+      font-family: var(--ff-mono); letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 4px 10px; border-radius: 20px;
+    }
+    .service-icon { font-size: 36px; margin-bottom: 20px; }
+    .service-name {
+      font-family: var(--ff-display); font-size: 22px; font-weight: 700;
+      color: var(--white); margin-bottom: 8px;
+    }
+    .service-tagline { font-size: 13px; color: var(--gold); margin-bottom: 20px; font-style: italic; }
+    .service-desc { font-size: 14px; color: var(--muted-lt); line-height: 1.75; margin-bottom: 28px; }
+    .service-features { list-style: none; margin-bottom: 36px; }
+    .service-features li {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 13px; color: var(--text); padding: 7px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .service-features li:last-child { border-bottom: none; }
+    .service-features li::before {
+      content: '✦'; color: var(--gold); font-size: 10px; flex-shrink: 0; margin-top: 3px;
+    }
+    .service-cta {
+      display: block; text-align: center; padding: 13px;
+      border: 1px solid var(--gold); border-radius: var(--radius);
+      color: var(--gold); text-decoration: none; font-size: 13px; font-weight: 500;
+      letter-spacing: 0.04em; transition: var(--transition);
+    }
+    .service-cta:hover, .service-card.featured .service-cta {
+      background: var(--gold); color: #0a0a0a;
+    }
+    .service-card.featured .service-cta:hover { background: var(--gold-lt); }
+
+    /* ── PROCESS ── */
+    #process { padding: 100px 0; }
+    .process-timeline { max-width: 800px; margin: 0 auto; position: relative; }
+    .process-timeline::before {
+      content: ''; position: absolute; left: 28px; top: 0; bottom: 0;
+      width: 1px; background: linear-gradient(180deg, var(--gold), transparent);
+    }
+    .process-step {
+      display: flex; gap: 40px; align-items: flex-start;
+      margin-bottom: 56px; position: relative;
+    }
+    .process-step:last-child { margin-bottom: 0; }
+    .step-num {
+      width: 56px; height: 56px; border-radius: 50%; flex-shrink: 0;
+      background: var(--bg); border: 2px solid var(--gold);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--ff-display); font-size: 18px; font-weight: 700; color: var(--gold);
+      position: relative; z-index: 1;
+    }
+    .step-content { padding-top: 8px; }
+    .step-label {
+      font-family: var(--ff-mono); font-size: 10px; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 8px;
+    }
+    .step-title {
+      font-family: var(--ff-display); font-size: 22px; font-weight: 600;
+      color: var(--white); margin-bottom: 10px;
+    }
+    .step-desc { font-size: 14px; color: var(--muted-lt); line-height: 1.75; }
+    .step-time {
+      display: inline-flex; align-items: center; gap: 6px;
+      margin-top: 12px; font-size: 12px; color: var(--gold);
+      font-family: var(--ff-mono);
+    }
+
+    /* ── PORTFOLIO SAMPLES ── */
+    #samples { padding: 100px 0; background: var(--surface); }
+    .samples-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+    }
+    .sample-card {
+      background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
+      overflow: hidden; transition: transform var(--transition), border-color var(--transition);
+      cursor: pointer;
+    }
+    .sample-card:hover { transform: translateY(-4px); border-color: rgba(201,168,76,0.3); }
+    .sample-preview {
+      aspect-ratio: 3/4; padding: 24px; position: relative;
+      display: flex; flex-direction: column; overflow: hidden;
+    }
+    .sample-card:nth-child(1) .sample-preview {
+      background: linear-gradient(145deg, #0f1923, #1a2535);
+    }
+    .sample-card:nth-child(2) .sample-preview {
+      background: linear-gradient(145deg, #0f1a14, #152316);
+    }
+    .sample-card:nth-child(3) .sample-preview {
+      background: linear-gradient(145deg, #1a1014, #251525);
+    }
+    .sp-header { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 16px; }
+    .sp-ava {
+      width: 36px; height: 36px; border-radius: 50%; flex-shrink: 0;
+      background: linear-gradient(135deg, #4a6fa5, #6a90cc);
+    }
+    .sample-card:nth-child(2) .sp-ava { background: linear-gradient(135deg, #3a7d44, #52b866); }
+    .sample-card:nth-child(3) .sp-ava { background: linear-gradient(135deg, #8b3a5c, #c06080); }
+    .sp-info-name { height: 10px; width: 80px; border-radius: 3px; margin-bottom: 5px;
+      background: rgba(255,255,255,0.15); }
+    .sp-info-role { height: 8px; width: 55px; border-radius: 3px;
+      background: rgba(255,255,255,0.08); }
+    .sp-divider { height: 1px; background: rgba(255,255,255,0.08); margin: 12px 0; }
+    .sp-label { height: 6px; width: 40px; border-radius: 3px; margin-bottom: 8px;
+      background: rgba(74,111,165,0.6); }
+    .sample-card:nth-child(2) .sp-label { background: rgba(58,125,68,0.6); }
+    .sample-card:nth-child(3) .sp-label { background: rgba(139,58,92,0.6); }
+    .sp-line { height: 7px; border-radius: 3px; margin-bottom: 5px;
+      background: rgba(255,255,255,0.1); }
+    .sp-line.w100 { width: 100%; }
+    .sp-line.w80 { width: 80%; }
+    .sp-line.w65 { width: 65%; }
+    .sp-skills { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 12px; }
+    .sp-skill { height: 18px; border-radius: 20px; background: rgba(255,255,255,0.07);
+      flex: 0 0 auto; }
+    .sp-skill.s1 { width: 48px; }
+    .sp-skill.s2 { width: 36px; }
+    .sp-skill.s3 { width: 52px; }
+    .sample-overlay {
+      position: absolute; inset: 0;
+      background: rgba(8,8,8,0.85);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; transition: opacity var(--transition);
+    }
+    .sample-card:hover .sample-overlay { opacity: 1; }
+    .overlay-text { color: var(--gold); font-family: var(--ff-mono); font-size: 11px;
+      letter-spacing: 0.15em; text-transform: uppercase; }
+    .sample-info { padding: 20px 20px; }
+    .sample-style { font-family: var(--ff-display); font-size: 17px; font-weight: 600;
+      color: var(--white); margin-bottom: 4px; }
+    .sample-fit { font-size: 12px; color: var(--muted-lt); }
+
+    /* ── TESTIMONIALS ── */
+    #testimonials { padding: 100px 0; }
+    .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .testi-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 8px; padding: 36px 28px; position: relative;
+      transition: border-color var(--transition);
+    }
+    .testi-card:hover { border-color: rgba(201,168,76,0.3); }
+    .testi-stars { color: var(--gold); font-size: 13px; letter-spacing: 2px; margin-bottom: 20px; }
+    .testi-quote {
+      font-family: var(--ff-display); font-size: 15px; font-style: italic;
+      color: var(--text); line-height: 1.7; margin-bottom: 24px;
+    }
+    .testi-quote::before { content: '\201C'; color: var(--gold); font-size: 24px;
+      line-height: 0; vertical-align: -0.4em; margin-right: 2px; }
+    .testi-author { display: flex; align-items: center; gap: 12px; }
+    .testi-ava {
+      width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0;
+      background: linear-gradient(135deg, var(--gold-dk), var(--gold));
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--ff-display); font-size: 14px; font-weight: 700; color: #0a0a0a;
+    }
+    .testi-name { font-size: 14px; font-weight: 500; color: var(--white); }
+    .testi-role { font-size: 12px; color: var(--muted); margin-top: 2px; }
+    .testi-result {
+      position: absolute; top: 20px; right: 20px;
+      background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.25);
+      border-radius: 20px; padding: 3px 10px;
+      font-size: 10px; font-family: var(--ff-mono);
+      letter-spacing: 0.1em; color: var(--gold);
+    }
+
+    /* ── FAQ ── */
+    #faq { padding: 100px 0; background: var(--surface); }
+    .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 60px; max-width: 960px; margin: 0 auto; }
+    .faq-item {
+      border-bottom: 1px solid var(--border); padding: 24px 0; cursor: pointer;
+    }
+    .faq-question {
+      display: flex; justify-content: space-between; align-items: center; gap: 16px;
+      font-size: 15px; font-weight: 500; color: var(--white);
+    }
+    .faq-icon {
+      width: 24px; height: 24px; border-radius: 50%; border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; color: var(--gold); font-size: 16px; font-weight: 300;
+      transition: var(--transition); line-height: 1;
+    }
+    .faq-item.open .faq-icon { transform: rotate(45deg); background: var(--gold); color: #0a0a0a; }
+    .faq-answer {
+      font-size: 14px; color: var(--muted-lt); line-height: 1.75;
+      max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1),
+      padding 0.3s ease; padding-top: 0;
+    }
+    .faq-item.open .faq-answer { max-height: 300px; padding-top: 14px; }
+
+    /* ── CTA BANNER ── */
+    #cta {
+      padding: 100px 0;
+      background:
+        radial-gradient(ellipse 100% 80% at 50% 50%, rgba(201,168,76,0.1) 0%, transparent 60%),
+        var(--bg);
+    }
+    .cta-box {
+      text-align: center; max-width: 680px; margin: 0 auto;
+    }
+    h2.cta-title {
+      font-family: var(--ff-display); font-size: clamp(36px, 5vw, 60px);
+      font-weight: 900; line-height: 1.1; letter-spacing: -0.03em;
+      color: var(--white); margin-bottom: 20px;
+    }
+    h2.cta-title em { font-style: italic; color: var(--gold); }
+    .cta-sub { font-size: 15px; color: var(--muted-lt); line-height: 1.8; margin-bottom: 44px; }
+    .cta-actions { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+    .btn-wa {
+      background: #25D366; color: white; font-weight: 600; font-size: 15px; padding: 16px 36px;
+    }
+    .btn-wa:hover {
+      background: #1da851; transform: translateY(-2px);
+      box-shadow: 0 16px 48px rgba(37,211,102,0.35);
+    }
+    .btn-wa svg { width: 20px; height: 20px; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border); padding: 48px 0;
+      background: var(--surface);
+    }
+    .footer-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 24px;
+    }
+    .footer-brand { font-family: var(--ff-display); font-size: 20px; font-weight: 700;
+      color: var(--white); }
+    .footer-brand span { color: var(--gold); }
+    .footer-links { display: flex; gap: 28px; flex-wrap: wrap; }
+    .footer-links a {
+      font-size: 13px; color: var(--muted); text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--gold); }
+    .footer-copy { font-size: 12px; color: var(--muted); }
+
+    /* ── WA FLOAT ── */
+    .wa-float {
+      position: fixed; bottom: 32px; right: 32px; z-index: 200;
+      width: 60px; height: 60px; border-radius: 50%;
+      background: #25D366; color: white;
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none; box-shadow: 0 8px 32px rgba(37,211,102,0.45);
+      transition: transform 0.3s, box-shadow 0.3s;
+      animation: wa-pulse 3s ease-in-out infinite;
+    }
+    .wa-float:hover { transform: scale(1.1); box-shadow: 0 16px 48px rgba(37,211,102,0.6); }
+    .wa-float svg { width: 28px; height: 28px; }
+    @keyframes wa-pulse {
+      0%, 100% { box-shadow: 0 8px 32px rgba(37,211,102,0.45), 0 0 0 0 rgba(37,211,102,0.4); }
+      50% { box-shadow: 0 8px 32px rgba(37,211,102,0.45), 0 0 0 12px rgba(37,211,102,0); }
+    }
+
+    /* ── ANIMATIONS ── */
+    .fade-up {
+      opacity: 0; transform: translateY(30px);
+      transition: opacity 0.7s cubic-bezier(0.4,0,0.2,1), transform 0.7s cubic-bezier(0.4,0,0.2,1);
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── MOBILE ── */
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 56px; }
+      .hero-visual { order: -1; }
+      .cv-mockup { max-width: 320px; }
+      .hero-trust { justify-content: center; }
+      .why-grid { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: 1fr; gap: 20px; }
+      .samples-grid { grid-template-columns: 1fr 1fr; }
+      .testi-grid { grid-template-columns: 1fr; }
+      .faq-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .nav-links.open {
+        display: flex; flex-direction: column;
+        position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(8,8,8,0.98); backdrop-filter: blur(20px);
+        align-items: center; justify-content: center; gap: 32px; z-index: 99;
+        font-size: 18px !important;
+      }
+      .nav-links.open a { font-size: 18px !important; }
+      .footer-inner { flex-direction: column; text-align: center; }
+    }
+    @media (max-width: 600px) {
+      .samples-grid { grid-template-columns: 1fr; }
+      h1.hero-title { font-size: 38px; }
+      .hero-actions { flex-direction: column; width: 100%; }
+      .hero-actions .btn { justify-content: center; }
+      .cta-actions { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAVIGATION ── -->
+<nav id="navbar">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo">Crafted<span>CV</span></a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#why">Keunggulan</a></li>
+        <li><a href="#services">Layanan</a></li>
+        <li><a href="#samples">Contoh CV</a></li>
+        <li><a href="#testimonials">Testimoni</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li>
+          <a href="https://wa.me/6288218970514?text=Halo%20CraftedCV%2C%20saya%20ingin%20konsultasi%20pembuatan%20CV%20profesional%20%F0%9F%99%8F"
+            target="_blank" class="btn btn-gold nav-cta" style="padding: 10px 20px; font-size: 13px;">
+            Konsultasi Gratis
+          </a>
+        </li>
+      </ul>
+      <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section id="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <!-- LEFT -->
+      <div>
+        <div class="hero-eyebrow">Jasa CV Profesional Indonesia</div>
+        <h1 class="hero-title">
+          CV yang<br>
+          <em>Membuka</em><br>
+          Pintu Karirmu
+        </h1>
+        <p class="hero-desc">
+          Ribuan rekruter membaca ratusan CV setiap hari. Dalam 6 detik pertama, mereka memutuskan. Pastikan CV-mu jadi yang paling berkesan — dirancang khusus untuk menampilkan potensi terbaikmu.
+        </p>
+        <div class="hero-actions">
+          <a href="https://wa.me/6288218970514?text=Halo%20CraftedCV%2C%20saya%20ingin%20konsultasi%20pembuatan%20CV%20profesional%20%F0%9F%99%8F"
+            target="_blank" class="btn btn-gold">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Chat WhatsApp Sekarang
+          </a>
+          <a href="#services" class="btn btn-outline">Lihat Layanan →</a>
+        </div>
+        <div class="hero-trust">
+          <div class="hero-trust-stat">
+            <div class="hero-trust-num">500+</div>
+            <div class="hero-trust-label">CV Dibuat</div>
+          </div>
+          <div class="trust-sep"></div>
+          <div class="hero-trust-stat">
+            <div class="hero-trust-num">92%</div>
+            <div class="hero-trust-label">Interview Rate</div>
+          </div>
+          <div class="trust-sep"></div>
+          <div class="hero-trust-stat">
+            <div class="hero-trust-num">4.9★</div>
+            <div class="hero-trust-label">Rating Klien</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT — CV MOCKUP -->
+      <div class="hero-visual">
+        <div class="cv-mockup">
+          <div class="cv-card">
+            <div class="cv-avatar">A</div>
+            <div class="cv-name-line"></div>
+            <div class="cv-subtitle-line"></div>
+            <div class="cv-section-label">Pengalaman Kerja</div>
+            <div class="cv-line w90"></div>
+            <div class="cv-line w80"></div>
+            <div class="cv-line w60"></div>
+            <div class="cv-divider"></div>
+            <div class="cv-section-label">Pendidikan</div>
+            <div class="cv-line w80"></div>
+            <div class="cv-line w60"></div>
+            <div class="cv-divider"></div>
+            <div class="cv-section-label">Keahlian</div>
+            <div>
+              <span class="cv-badge">Figma</span>
+              <span class="cv-badge">Branding</span>
+              <span class="cv-badge">UI/UX</span>
+              <span class="cv-badge">Adobe</span>
+            </div>
+          </div>
+          <div class="floating-tag tag1">
+            <span class="dot green"></span>
+            <span>Dipanggil Interview ✓</span>
+          </div>
+          <div class="floating-tag tag2">
+            <span class="dot gold"></span>
+            <span>Selesai dalam 24 jam</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── MARQUEE ── -->
+<div class="marquee-wrap">
+  <div class="marquee-track" id="marquee">
+    <span class="marquee-item"><svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><polygon points="5,0 6.2,3.8 10,3.8 6.9,6.2 8.1,10 5,7.6 1.9,10 3.1,6.2 0,3.8 3.8,3.8"/></svg>Fresh Graduate</span>
+    <span class="marquee-item"><svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><polygon points="5,0 6.2,3.8 10,3.8 6.9,6.2 8.1,10 5,7.6 1.9,10 3.1,6.2 0,3.8 3.8,3.8"/></svg>Senior Professional</span>
+    <span class="marquee-item"><svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><polygon points="5,0 6.2,3.8 10,3.8 6.9,6.2 8.1,10 5,7.6 1.9,10 3.1,6.2 0,3.8 3.8,3.8"/></svg>ATS-Friendly</span>
+    <span class="marquee-item"><svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><polygon points="5,0 6.2,3.8 10,3.8 6.9,6.2 8.1,10 5,7.6 1.9,10 3.1,6.2 0,3.8 3.8,3.8"/></svg>Portofolio Karir</span>
+    <span class="marquee-item"><svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><polygon points="5,0 6.2,3.8 10,3.8 6.9,6.2 8.1,10 5,7.6 1.9,10 3.1,6.2 0,3.8 3.8,3.8"/></svg>LinkedIn Optimization</span>
+    <span class="marquee-item"><svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><polygon points="5,0 6.2,3.8 10,3.8 6.9,6.2 8.1,10 5,7.6 1.9,10 3.1,6.2 0,3.8 3.8,3.8"/></svg>Desain Premium</span>
+    <span class="marquee-item"><svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><polygon points="5,0 6.2,3.8 10,3.8 6.9,6.2 8.1,10 5,7.6 1.9,10 3.1,6.2 0,3.8 3.8,3.8"/></svg>Revisi Sampai Puas</span>
+    <!-- duplicate for seamless loop -->
+    <span class="marquee-item"><svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><polygon points="5,0 6.2,3.8 10,3.8 6.9,6.2 8.1,10 5,7.6 1.9,10 3.1,6.2 0,3.8 3.8,3.8"/></svg>Fresh Graduate</span>
+    <span class="marquee-item"><svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><polygon points="5,0 6.2,3.8 10,3.8 6.9,6.2 8.1,10 5,7.6 1.9,10 3.1,6.2 0,3.8 3.8,3.8"/></svg>Senior Professional</span>
+    <span class="marquee-item"><svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><polygon points="5,0 6.2,3.8 10,3.8 6.9,6.2 8.1,10 5,7.6 1.9,10 3.1,6.2 0,3.8 3.8,3.8"/></svg>ATS-Friendly</span>
+    <span class="marquee-item"><svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><polygon points="5,0 6.2,3.8 10,3.8 6.9,6.2 8.1,10 5,7.6 1.9,10 3.1,6.2 0,3.8 3.8,3.8"/></svg>Portofolio Karir</span>
+    <span class="marquee-item"><svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><polygon points="5,0 6.2,3.8 10,3.8 6.9,6.2 8.1,10 5,7.6 1.9,10 3.1,6.2 0,3.8 3.8,3.8"/></svg>LinkedIn Optimization</span>
+    <span class="marquee-item"><svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><polygon points="5,0 6.2,3.8 10,3.8 6.9,6.2 8.1,10 5,7.6 1.9,10 3.1,6.2 0,3.8 3.8,3.8"/></svg>Desain Premium</span>
+    <span class="marquee-item"><svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><polygon points="5,0 6.2,3.8 10,3.8 6.9,6.2 8.1,10 5,7.6 1.9,10 3.1,6.2 0,3.8 3.8,3.8"/></svg>Revisi Sampai Puas</span>
+  </div>
+</div>
+
+<!-- ── WHY US ── -->
+<section id="why">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="gold-line">Keunggulan Kami</div>
+      <h2 class="section-title">Kenapa Harus <em>CraftedCV</em>?</h2>
+      <p class="section-sub">Kami bukan sekadar mendesain — kami menceritakan perjalanan karirmu dengan cara yang paling memikat rekruter.</p>
+    </div>
+    <div class="why-grid fade-up">
+      <div class="why-card">
+        <div class="why-num">01</div>
+        <div class="why-icon">🎯</div>
+        <div class="why-title">ATS-Optimized</div>
+        <p class="why-desc">CV kamu dirancang agar lolos sistem Applicant Tracking System yang dipakai perusahaan-perusahaan besar sebelum sampai ke tangan rekruter.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-num">02</div>
+        <div class="why-icon">✍️</div>
+        <div class="why-title">Penulisan Profesional</div>
+        <p class="why-desc">Bukan hanya tampilan cantik — setiap kata dipilih dengan cermat untuk menonjolkan pencapaian nyata dan potensi terbaikmu.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-num">03</div>
+        <div class="why-icon">⚡</div>
+        <div class="why-title">Selesai 24 Jam</div>
+        <p class="why-desc">Tidak perlu menunggu berminggu-minggu. CV profesionalmu bisa jadi dalam 24 jam kerja setelah data lengkap diterima.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-num">04</div>
+        <div class="why-icon">🔄</div>
+        <div class="why-title">Revisi Sampai Puas</div>
+        <p class="why-desc">Kami tidak melepasmu begitu saja. Revisi terus dilakukan sampai kamu benar-benar puas dengan hasilnya.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-num">05</div>
+        <div class="why-icon">🎨</div>
+        <div class="why-title">Desain Eksklusif</div>
+        <p class="why-desc">Template unik dan tidak pasaran. Setiap CV disesuaikan dengan industri dan personal branding kamu agar benar-benar stand out.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-num">06</div>
+        <div class="why-icon">💬</div>
+        <div class="why-title">Konsultasi Gratis</div>
+        <p class="why-desc">Tidak tahu harus mulai dari mana? Ceritakan kondisimu, kami bantu tentukan strategi CV terbaik untukmu — gratis.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SERVICES ── -->
+<section id="services">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="gold-line">Paket Layanan</div>
+      <h2 class="section-title">Pilih yang <em>Sesuai</em> Untukmu</h2>
+      <p class="section-sub">Tanya via WhatsApp untuk mendapatkan penawaran terbaik yang disesuaikan dengan kebutuhan karirmu.</p>
+    </div>
+    <div class="services-grid fade-up">
+
+      <!-- STARTER -->
+      <div class="service-card">
+        <div class="service-icon">🌱</div>
+        <div class="service-name">Starter</div>
+        <div class="service-tagline">Ideal untuk fresh graduate & career starter</div>
+        <p class="service-desc">Mulai perjalanan karirmu dengan CV yang rapi, profesional, dan siap melamar.</p>
+        <ul class="service-features">
+          <li>CV 1 halaman profesional</li>
+          <li>Desain bersih & ATS-friendly</li>
+          <li>Penulisan konten dasar</li>
+          <li>Format PDF & Word</li>
+          <li>Revisi 2x</li>
+        </ul>
+        <a href="https://wa.me/6288218970514?text=Halo%2C%20saya%20tertarik%20dengan%20Paket%20Starter%20CV.%20Boleh%20info%20lebih%20lanjut%3F%20%F0%9F%99%8F"
+          target="_blank" class="service-cta">Tanya Sekarang →</a>
+      </div>
+
+      <!-- PRO -->
+      <div class="service-card featured">
+        <div class="service-icon">⭐</div>
+        <div class="service-name">Professional</div>
+        <div class="service-tagline">Untuk karir mid-level & pindah industri</div>
+        <p class="service-desc">CV yang benar-benar bercerita tentang siapa kamu, pencapaianmu, dan mengapa kamu layak.</p>
+        <ul class="service-features">
+          <li>CV 1–2 halaman premium</li>
+          <li>Desain eksklusif sesuai industri</li>
+          <li>Penulisan achievement-focused</li>
+          <li>Format PDF, Word & ATS Plain</li>
+          <li>Cover Letter profesional</li>
+          <li>Revisi unlimited</li>
+        </ul>
+        <a href="https://wa.me/6288218970514?text=Halo%2C%20saya%20tertarik%20dengan%20Paket%20Professional%20CV.%20Boleh%20konsultasi%3F%20%F0%9F%99%8F"
+          target="_blank" class="service-cta">Tanya Sekarang →</a>
+      </div>
+
+      <!-- EXECUTIVE -->
+      <div class="service-card">
+        <div class="service-icon">👑</div>
+        <div class="service-name">Executive</div>
+        <div class="service-tagline">Untuk senior, manajer & eksekutif</div>
+        <p class="service-desc">Paket lengkap untuk personal branding eksekutif yang ingin tampil otoritatif dan berkesan.</p>
+        <ul class="service-features">
+          <li>CV 2+ halaman premium</li>
+          <li>Desain mewah & eksklusif</li>
+          <li>Storytelling karir mendalam</li>
+          <li>Cover Letter + Bio Profesional</li>
+          <li>Optimasi profil LinkedIn</li>
+          <li>Revisi unlimited + konsultasi</li>
+        </ul>
+        <a href="https://wa.me/6288218970514?text=Halo%2C%20saya%20tertarik%20dengan%20Paket%20Executive%20CV.%20Boleh%20konsultasi%3F%20%F0%9F%99%8F"
+          target="_blank" class="service-cta">Tanya Sekarang →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── PROCESS ── -->
+<section id="process">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="gold-line">Cara Kerja</div>
+      <h2 class="section-title">Prosesnya <em>Mudah</em> & Cepat</h2>
+      <p class="section-sub">Dari konsultasi hingga CV jadi, semuanya lancar dan transparan.</p>
+    </div>
+    <div class="process-timeline fade-up">
+      <div class="process-step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <div class="step-label">Langkah Pertama</div>
+          <div class="step-title">Konsultasi Gratis via WhatsApp</div>
+          <p class="step-desc">Ceritakan tentang dirimu, pengalaman, dan posisi yang sedang kamu incar. Kami akan rekomendasikan paket yang paling cocok untukmu.</p>
+          <span class="step-time">⏱ ~15 menit</span>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <div class="step-label">Langkah Kedua</div>
+          <div class="step-title">Kirim Data & Informasi</div>
+          <p class="step-desc">Isi form data yang kami kirimkan, sertakan CV lama (jika ada), ijazah, dan informasi pengalaman kerja. Semakin lengkap, semakin optimal hasilnya.</p>
+          <span class="step-time">⏱ ~30 menit</span>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <div class="step-label">Langkah Ketiga</div>
+          <div class="step-title">Kami Kerjakan dengan Detail</div>
+          <p class="step-desc">Tim kami merancang dan menulis CV-mu dengan penuh perhatian. Setiap kata, layout, dan detail dipilih dengan cermat untuk memaksimalkan dampaknya.</p>
+          <span class="step-time">⏱ 12–24 jam</span>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <div class="step-label">Langkah Terakhir</div>
+          <div class="step-title">Review, Revisi & Terima CV Final</div>
+          <p class="step-desc">Kamu review hasilnya. Kalau ada yang ingin disesuaikan, kami revisi sampai sempurna. CV final dikirim dalam format PDF & Word siap pakai.</p>
+          <span class="step-time">⏱ Selesai & siap kirim!</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SAMPLES ── -->
+<section id="samples">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="gold-line">Contoh Karya</div>
+      <h2 class="section-title">CV yang <em>Memukau</em> Rekruter</h2>
+      <p class="section-sub">Setiap CV dirancang unik sesuai industri dan personal branding klien.</p>
+    </div>
+    <div class="samples-grid fade-up">
+      <div class="sample-card">
+        <div class="sample-preview">
+          <div class="sp-header">
+            <div class="sp-ava"></div>
+            <div>
+              <div class="sp-info-name"></div>
+              <div class="sp-info-role"></div>
+            </div>
+          </div>
+          <div class="sp-divider"></div>
+          <div class="sp-label"></div>
+          <div class="sp-line w100"></div>
+          <div class="sp-line w80"></div>
+          <div class="sp-line w65"></div>
+          <div class="sp-divider"></div>
+          <div class="sp-label"></div>
+          <div class="sp-line w100"></div>
+          <div class="sp-line w80"></div>
+          <div class="sp-skills">
+            <div class="sp-skill s1"></div>
+            <div class="sp-skill s2"></div>
+            <div class="sp-skill s3"></div>
+            <div class="sp-skill s2"></div>
+          </div>
+          <div class="sample-overlay">
+            <span class="overlay-text">✦ Corporate Style</span>
+          </div>
+        </div>
+        <div class="sample-info">
+          <div class="sample-style">Corporate Classic</div>
+          <div class="sample-fit">Finance, Banking, Law, Consulting</div>
+        </div>
+      </div>
+
+      <div class="sample-card">
+        <div class="sample-preview">
+          <div class="sp-header">
+            <div class="sp-ava"></div>
+            <div>
+              <div class="sp-info-name"></div>
+              <div class="sp-info-role"></div>
+            </div>
+          </div>
+          <div class="sp-divider"></div>
+          <div class="sp-label"></div>
+          <div class="sp-line w100"></div>
+          <div class="sp-line w80"></div>
+          <div class="sp-line w65"></div>
+          <div class="sp-divider"></div>
+          <div class="sp-label"></div>
+          <div class="sp-line w100"></div>
+          <div class="sp-line w80"></div>
+          <div class="sp-skills">
+            <div class="sp-skill s3"></div>
+            <div class="sp-skill s1"></div>
+            <div class="sp-skill s2"></div>
+            <div class="sp-skill s3"></div>
+          </div>
+          <div class="sample-overlay">
+            <span class="overlay-text">✦ Modern Clean</span>
+          </div>
+        </div>
+        <div class="sample-info">
+          <div class="sample-style">Modern Minimal</div>
+          <div class="sample-fit">Tech, Startup, Product, Data</div>
+        </div>
+      </div>
+
+      <div class="sample-card">
+        <div class="sample-preview">
+          <div class="sp-header">
+            <div class="sp-ava"></div>
+            <div>
+              <div class="sp-info-name"></div>
+              <div class="sp-info-role"></div>
+            </div>
+          </div>
+          <div class="sp-divider"></div>
+          <div class="sp-label"></div>
+          <div class="sp-line w100"></div>
+          <div class="sp-line w80"></div>
+          <div class="sp-line w65"></div>
+          <div class="sp-divider"></div>
+          <div class="sp-label"></div>
+          <div class="sp-line w100"></div>
+          <div class="sp-line w80"></div>
+          <div class="sp-skills">
+            <div class="sp-skill s2"></div>
+            <div class="sp-skill s3"></div>
+            <div class="sp-skill s1"></div>
+            <div class="sp-skill s3"></div>
+          </div>
+          <div class="sample-overlay">
+            <span class="overlay-text">✦ Creative Bold</span>
+          </div>
+        </div>
+        <div class="sample-info">
+          <div class="sample-style">Creative Bold</div>
+          <div class="sample-fit">Design, Marketing, Media, Creative</div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top: 48px;" class="fade-up">
+      <a href="https://wa.me/6288218970514?text=Halo%2C%20saya%20ingin%20lihat%20lebih%20banyak%20contoh%20CV%20dari%20CraftedCV%20%F0%9F%99%8F"
+        target="_blank" class="btn btn-outline">
+        Lihat Lebih Banyak Contoh →
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── TESTIMONIALS ── -->
+<section id="testimonials">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="gold-line">Kata Mereka</div>
+      <h2 class="section-title">Sudah <em>Terbukti</em> Hasilnya</h2>
+      <p class="section-sub">Ratusan klien sudah merasakan perbedaannya. Sekarang giliran kamu.</p>
+    </div>
+    <div class="testi-grid fade-up">
+
+      <div class="testi-card">
+        <div class="testi-result">Diterima Google 🎉</div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">Setelah pakai CV dari CraftedCV, langsung dapat 3 panggilan interview dalam seminggu pertama. Padahal sebelumnya sudah apply 2 bulan tidak ada respon sama sekali.</p>
+        <div class="testi-author">
+          <div class="testi-ava">R</div>
+          <div>
+            <div class="testi-name">Rizky Pratama</div>
+            <div class="testi-role">Software Engineer · Jakarta</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-result">Naik Jabatan ✨</div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">Saya minta dibantu buat CV untuk apply posisi manajer setelah 5 tahun di posisi yang sama. Hasilnya luar biasa — profesional banget dan benar-benar mencerminkan pengalaman saya.</p>
+        <div class="testi-author">
+          <div class="testi-ava">S</div>
+          <div>
+            <div class="testi-name">Siti Rahayu</div>
+            <div class="testi-role">Marketing Manager · Bandung</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-result">Pindah Industri ✓</div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">Baru lulus kuliah, sama sekali tidak tahu cara bikin CV yang bagus. CraftedCV bantu dari awal sampai akhir, sabar sekali melayani. CV-nya keren banget, beda dari yang lain!</p>
+        <div class="testi-author">
+          <div class="testi-ava">A</div>
+          <div>
+            <div class="testi-name">Anisa Kurniawan</div>
+            <div class="testi-role">Fresh Graduate · Surabaya</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-result">3x Interview Rate ↑</div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">Awalnya ragu karena tidak lihat portofolio banyak, tapi setelah lihat hasil CV saya sendiri langsung jatuh cinta. Desainnya elegan, isinya padat berisi. Worth every penny!</p>
+        <div class="testi-author">
+          <div class="testi-ava">B</div>
+          <div>
+            <div class="testi-name">Budi Santoso</div>
+            <div class="testi-role">Finance Analyst · Medan</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-result">Lolos BUMN ✓</div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">Pelayanannya super responsif! Chat jam 9 malam, langsung dibalas dan konsultasi detail. CV jadi keesokan harinya, tepat waktu untuk deadline pendaftaran. Recommended banget!</p>
+        <div class="testi-author">
+          <div class="testi-ava">F</div>
+          <div>
+            <div class="testi-name">Fajar Hidayat</div>
+            <div class="testi-role">HRD Staff · Yogyakarta</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-result">Kerja di Luar Negeri 🌏</div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">Dibantu buat CV untuk apply kerja ke Singapore. Mereka paham format internasional dan tau apa yang dicari rekruter asing. Sekarang sudah kerja di sana. Terima kasih banyak!</p>
+        <div class="testi-author">
+          <div class="testi-ava">D</div>
+          <div>
+            <div class="testi-name">Dewi Anggraeni</div>
+            <div class="testi-role">UX Designer · Singapore</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── FAQ ── -->
+<section id="faq">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="gold-line">FAQ</div>
+      <h2 class="section-title">Pertanyaan yang <em>Sering</em> Ditanyakan</h2>
+    </div>
+    <div class="faq-grid fade-up">
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-question">
+          Berapa lama CV selesai dikerjakan?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">CV biasanya selesai dalam 12–24 jam kerja setelah semua data diterima. Untuk paket Executive bisa 24–48 jam karena proses lebih mendalam.</div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-question">
+          Apakah CV-nya ATS-friendly?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">Ya, semua CV kami dioptimalkan untuk lolos ATS (Applicant Tracking System). Kami juga menyediakan versi plain text khusus untuk upload ke portal lowongan kerja.</div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-question">
+          Format file apa yang diberikan?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">Kamu akan mendapatkan file PDF (untuk dikirim ke rekruter), file Word/DOCX (untuk diedit sendiri di kemudian hari), dan versi ATS plain text jika diperlukan.</div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-question">
+          Bagaimana jika CV-ku sudah ada, tapi ingin di-revamp?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">Tentu bisa! Kamu bisa kirim CV lama kamu sebagai referensi. Kami akan menganalisis dan merevampnya secara menyeluruh, atau mengambil informasi yang sudah ada lalu mempresentasikannya dengan jauh lebih baik.</div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-question">
+          Berapa kali bisa revisi?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">Paket Starter mendapatkan 2x revisi. Paket Professional dan Executive mendapatkan revisi unlimited sampai kamu benar-benar puas dengan hasilnya.</div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-question">
+          Apakah bisa untuk melamar kerja ke luar negeri?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">Tentu! Kami berpengalaman membuat CV untuk melamar ke perusahaan internasional di Singapura, Malaysia, Australia, Eropa, dan lainnya. Formatnya disesuaikan dengan standar negara tujuan.</div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-question">
+          Apakah ada konsultasi sebelum pesan?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">Ada dan gratis! Kami sangat menyarankan konsultasi dulu via WhatsApp sebelum order, supaya kami bisa memahami kebutuhan dan tujuan karirmu dengan baik.</div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-question">
+          Bagaimana cara pembayarannya?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">Pembayaran dilakukan via transfer bank atau e-wallet (GoPay, OVO, Dana, dll). Detail pembayaran akan dikirimkan setelah konsultasi dan kesepakatan paket.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section id="cta">
+  <div class="container">
+    <div class="cta-box fade-up">
+      <div class="gold-line" style="justify-content:center;">Mulai Sekarang</div>
+      <h2 class="cta-title">
+        Siap Dapat<br><em>Panggilan Interview</em>?
+      </h2>
+      <p class="cta-sub">
+        Ratusan orang sudah membuktikannya. CV yang tepat benar-benar mengubah segalanya. Konsultasikan kebutuhan karirmu sekarang — gratis, tanpa komitmen.
+      </p>
+      <div class="cta-actions">
+        <a href="https://wa.me/6288218970514?text=Halo%20CraftedCV%2C%20saya%20ingin%20konsultasi%20pembuatan%20CV%20profesional.%20Boleh%20dibantu%3F%20%F0%9F%99%8F"
+          target="_blank" class="btn btn-wa">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Chat WhatsApp Sekarang
+        </a>
+      </div>
+      <p style="margin-top:20px; font-size:12px; color:var(--muted); font-family:var(--ff-mono); letter-spacing:0.08em;">
+        ✦ Konsultasi Gratis &nbsp;·&nbsp; Respon Cepat &nbsp;·&nbsp; Garansi Kepuasan
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">Crafted<span>CV</span></div>
+      <div class="footer-links">
+        <a href="#why">Keunggulan</a>
+        <a href="#services">Layanan</a>
+        <a href="#samples">Contoh CV</a>
+        <a href="#testimonials">Testimoni</a>
+        <a href="https://wa.me/6288218970514" target="_blank">WhatsApp</a>
+      </div>
+      <div class="footer-copy">© 2025 CraftedCV · All rights reserved</div>
+    </div>
+  </div>
+</footer>
+
+<!-- ── WA FLOATING BUTTON ── -->
+<a href="https://wa.me/6288218970514?text=Halo%20CraftedCV%2C%20saya%20ingin%20konsultasi%20pembuatan%20CV%20profesional%20%F0%9F%99%8F"
+  target="_blank" class="wa-float" title="Chat via WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+  /* ── NAV SCROLL ── */
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 50);
+  });
+
+  /* ── HAMBURGER ── */
+  function toggleMenu() {
+    const links = document.getElementById('navLinks');
+    links.classList.toggle('open');
+  }
+  document.getElementById('navLinks').addEventListener('click', e => {
+    if (e.target.tagName === 'A') {
+      document.getElementById('navLinks').classList.remove('open');
+    }
+  });
+
+  /* ── FAQ TOGGLE ── */
+  function toggleFaq(el) {
+    const isOpen = el.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+    if (!isOpen) el.classList.add('open');
+  }
+
+  /* ── SCROLL ANIMATIONS ── */
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), 100);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  /* ── STAGGER CHILDREN ── */
+  document.querySelectorAll('.why-grid, .services-grid, .testi-grid, .samples-grid').forEach(grid => {
+    Array.from(grid.children).forEach((child, i) => {
+      child.style.transitionDelay = `${i * 80}ms`;
+      child.classList.add('fade-up');
+      observer.observe(child);
+    });
+    grid.classList.remove('fade-up');
+  });
+
+  /* ── SMOOTH ANCHOR ── */
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+</script>
+</body>
+</html>
